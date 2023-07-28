@@ -1,8 +1,9 @@
-import React , { useState, useEffect } from 'react'
-import axios from 'axios'
-import './App.css'
-import Coins from './components/Coins'
+import React , { useState, useEffect } from 'react';
+import axios from 'axios';
+import Coins from './components/Coins';
 import Navbar from './components/Navbar';
+import { Routes, Route } from 'react-router-dom';
+import Coin from './routes/Coin.jsx';
 
 function App() {
  //enable  
@@ -24,9 +25,17 @@ function App() {
   }, [])
 
   return (
-    <div id='root' className='font-sriracha box-border m-0 p-0 bg-gray-700 text-white'>
+    <div id='root' className='font-sriracha box-border m-0 p-0 bg-gray-700 text-white '>
       <Navbar></Navbar>
-      <Coins coins={coins}></Coins>
+      <Routes>
+        <Route path='/' element={<Coins coins={coins}></Coins>}></Route>
+        {/* <Route path='/coins' element={<Coin/>}></Route>
+        <Route path=':coinId' element={<Coin/>}></Route> */}
+        <Route path='/coins' >
+          <Route path=':coinId' element={<Coin/>}></Route>
+        </Route>
+      </Routes>
+      {/* <Coins coins={coins}></Coins> */}
     </div>
   )
 }

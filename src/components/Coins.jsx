@@ -1,13 +1,17 @@
 import React from 'react'
 import CoinItem from './CoinItem'
+import { Link } from 'react-router-dom'
+import Coin from '../routes/Coin'
 
 const Coins = (props, ) => {
+
+  
   return (
-    <div id='container' className='max-w-5xl m-auto'>
+    <div id='container' className='max-w-[95%] m-auto'>
       <div>
-        <div id='heading' className='flex flex-row justify-between items-center bg-cyan-600 rounded-xl my-2 mx-1
-        py-2 px-3 font-semibold'>
-            <p>#</p>
+        {/* <div id='heading' className='flex flex-row justify-between items-center bg-cyan-600 rounded-xl my-2 mx-1 */}
+        <div id='heading' className=' grid grid-cols-6 place-items-center bg-cyan-600 rounded-xl my-2 mx-1 max-lg:grid-cols-4'>
+            <p className='ml-6'>#</p>
             <p id='coin-name'>Coin</p>
             <p>Price</p>
             <p>24h</p>
@@ -17,7 +21,9 @@ const Coins = (props, ) => {
 
             {props.coins.map((coin) => {
               return (
-                <CoinItem coins={coin}></CoinItem>
+                <Link to={`/coins/${coin.id}`} key={coin.id} >
+                <CoinItem coins={coin} key={coin.id}></CoinItem>
+                </Link>
               )
             })}
 
